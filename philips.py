@@ -2,6 +2,47 @@
 import time
 import serial
 import sys
+from functools import reduce
+command_map = {
+        "POWER-GET": [0x19],
+        "ON":        [0x18, 0x02],
+        "OFF":       [0x18, 0x01],
+        "PIC-NORM":  [0x3A, 0x00],
+        "PIC-CUST":  [0x3A, 0x01],
+        "PIC-REAL":  [0x3A, 0x02],
+        "PIC-FULL":  [0x3A, 0x03],
+        "PIC-21-9":  [0x3A, 0x04],
+        "PIC-DYN":   [0x3A, 0x05],
+        "PIP-OFF":   [0x3C, 0x00, 0x00, 0x00, 0x00],
+        "PIP-BL":    [0x3C, 0x01, 0x00, 0x00, 0x00],
+        "PIP-TL":    [0x3C, 0x01, 0x01, 0x00, 0x00],
+        "PIP-TR":    [0x3C, 0x01, 0x02, 0x00, 0x00],
+        "PIP-BR":    [0x3C, 0x01, 0x03, 0x00, 0x00],
+        "VOL0":      [0x44, 0x00],
+        "VOL10":     [0x44, 0x0A],
+        "VOL20":     [0x44, 0x14],
+        "VOL30":     [0x44, 0x1e],
+        "VOL40":     [0x44, 0x28],
+        "VOL50":     [0x44, 0x32],
+        "VOL60":     [0x44, 0x3C],
+        "VOL70":     [0x44, 0x46],
+        "VOL80":     [0x44, 0x50],
+        "VOL90":     [0x44, 0x5A],
+        "VOL100":    [0x44, 0x64],
+        "M-NORM":    [0x32, 0x32, 0x32, 0x32, 0x32, 0x32],
+        "M-MOVIE":   [0x32, 0x64, 0x32, 0x32, 0x5A, 0x32],
+        "REP-INPUT": [0xAD],
+        "IN-VGA":    [0xAC, 0x05, 0x00, 0x01, 0x00],
+        "IN-HDMI":   [0xAC, 0x06, 0x02, 0x01, 0x00],
+        "IN-MHDMI":  [0xAC, 0x06, 0x03, 0x01, 0x00],
+        "IN-DP":     [0xAC, 0x09, 0x04, 0x01, 0x00],
+        "IN-MDP":    [0xAC, 0x09, 0x05, 0x01, 0x00],
+
+
+
+
+    }
+
 '''
 command = {
 'ON':        '\xa6\x01\x00\x00\x00\x04\x01\x18\x02\xb8',
@@ -36,67 +77,20 @@ command = {
 #'IN-MHDMI':  '\xAC\x06\x03\x01\x00',
 'IN_DP':     '\xa6\x01\x00\x00\x00\x07\x01\xac\x09\x04\x01\x00\x01',
 #'IN-MDP':    '\xAC\x09\x05\x01\x00'
-}'''
-# get the command line argument
-gg = (str(sys.argv[1]))
+}
+'''
 #configure the serial connections (the parameters differs on the device you are connecting to)
 ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
-if gg == "VOL100":
-#    print("100")
-#    print(ser.name)
-#    with serial.Serial('/dev/ttyUSB0', 9600, timeout=1) as ser:
-# send the character to the device
-# (note that I happend a \r\n carriage return and line feed to the characters - this is requested by my device)
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x64\x82')
-#    s = ser.read(100)
-#    print(s)
-    ser.close()
-elif gg == "VOL90":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x5a\xbc')
-    ser.close()
-elif gg == "VOL80":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x50\xb6')
-    ser.close()
-elif gg == "VOL70":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x46\xa0')
-    ser.close()
-elif gg == "VOL60":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x3c\xda')
-    ser.close()
-elif gg == "VOL50":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x32\xd4')
-    ser.close()
-elif gg == "VOL40":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x28\xce')
-    ser.close()
-elif gg == "VOL30":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x1e\xf8')
-    ser.close()
-elif gg == "VOL20":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x14\xf2')
-    ser.close()
-elif gg == "VOL10":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x0a\xec')
-    ser.close()
-elif gg == "VOL0":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x44\x00\xe6')
-    ser.close()
-elif gg == "PIP-TR":
-    ser.write(b'\xa6\x01\x00\x00\x00\x07\x01\x3c\x01\x02\x00\x00\x9e')
-    ser.close()
-elif gg == "PIP-OFF":
-    ser.write(b'\xa6\x01\x00\x00\x00\x07\x01\x3c\x00\x00\x00\x00\x9d')
-    ser.close()
-elif gg == "IN-HDMI":
-    ser.write(b'\xa6\x01\x00\x00\x00\x07\x01\xac\x06\x02\x01\x00\x08')
-    ser.close()
-elif gg == "IN-DP":
-    ser.write(b'\xa6\x01\x00\x00\x00\x07\x01\xac\x09\x04\x01\x00\x01')
-    ser.close()
-elif gg == "OFF":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x18\x01\xbb')
-    ser.close()
-elif gg == "ON":
-    ser.write(b'\xa6\x01\x00\x00\x00\x04\x01\x18\x02\xb8')
-    ser.close()
-
+# prepare the command to send
+buf = bytearray(command_map[str(sys.argv[1])]) 
+buf.insert(0, 0xa6)  # header
+buf.insert(1, 0x01)  # id
+buf.insert(2, 0x00)  # category
+buf.insert(3, 0x00)  # page
+buf.insert(4, 0x00)  # function
+buf.insert(5, len(buf)-3)  # length
+buf.insert(6, 0x01) 
+buf.append(reduce(lambda a, b: a ^ b, buf))
+print(bytes(buf))
+ser.write(bytes(buf))
+ser.close()
