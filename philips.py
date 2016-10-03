@@ -1,11 +1,10 @@
 #!/usr/bin/python
-import time
 import serial
 import sys
 from functools import reduce
 import subprocess
 command_map = {
-        "POWER-GET": [0x19],
+        "POWER-STATE": [0x19],
         "ON":        [0x18, 0x02],
         "OFF":       [0x18, 0x01],
         "PIC-NORM":  [0x3A, 0x00],
@@ -42,16 +41,16 @@ command_map = {
 #configure the serial connections (the parameters differs on the device you are connecting to)
 ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 # prepare the command to send
-buf = bytearray(command_map[str(sys.argv[1])]) 
-buf.insert(0, 0xa6)  # header
-buf.insert(1, 0x01)  # id
-buf.insert(2, 0x00)  # category
-buf.insert(3, 0x00)  # page
-buf.insert(4, 0x00)  # function
-buf.insert(5, len(buf)-3)  # length
-buf.insert(6, 0x01) 
-buf.append(reduce(lambda a, b: a ^ b, buf))
-#print(bytes(buf))
-ser.write(bytes(buf))
+command = bytearray(command_map[str(sys.argv[1])]) # Data
+command.insert(0, 0xa6)  # Header
+command.insert(1, 0x01)  # Display ID
+command.insert(2, 0x00)  # Category
+command.insert(3, 0x00)  # Page
+command.insert(4, 0x00)  # Function
+command.insert(5, len(command)-3)  # Length
+command.insert(6, 0x01) # Control
+command.append(reduce(lambda a, b: a ^ b, command)) # Checksum
+#print(bytes(command))
+ser.write(bytes(command))
 ser.close()
-subprocess.Popen(['notify-send', 'Philips', str(sys.argv[1]), '--icon=video-display'])
+subprocess.run(['notify-send', 'Philips', str(sys.argv[1]), '--icon=video-display'])# can use Popen instead of run
