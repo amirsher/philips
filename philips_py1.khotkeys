@@ -29,7 +29,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_10Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL0
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL0 & notify-send "Philips" "MUTE" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_10Conditions]
@@ -55,7 +55,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_11Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py OFF
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py OFF & notify-send "Philips" "Monitor Off" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_11Conditions]
@@ -81,7 +81,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_12Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py ON
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py ON & notify-send "Philips" "Monitor On" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_12Conditions]
@@ -107,7 +107,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_13Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py PIP-TR
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py PIP-TR & notify-send "Philips" "Picture in Picture On" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_13Conditions]
@@ -133,7 +133,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_14Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py PIP-OFF
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py PIP-OFF & notify-send "Philips" "Picture in Picture Off" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_14Conditions]
@@ -159,7 +159,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_15Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py IN-HDMI
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py IN-HDMI & notify-send "Philips" "Input HDMI" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_15Conditions]
@@ -185,7 +185,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_16Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py IN-DP
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py IN-DP & notify-send "Philips" "Input Display Port" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_16Conditions]
@@ -205,7 +205,8 @@ Uuid={76c08904-1c07-457f-a23d-082db2d8959f}
 ActionsCount=1
 
 [Data_1_1Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL90
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL90 & notify-send "Philips" "Volume 90" --icon=video-display
+# &#x2581;&#x2582;&#x2583;&#x2584;&#x2585;&#x2586;&#x2587;&#x2588; 90
 Type=COMMAND_URL
 
 [Data_1_1Conditions]
@@ -231,7 +232,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_2Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL80
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL80 & notify-send "Philips" "Volume 80" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_2Conditions]
@@ -257,7 +258,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_3Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL70
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL70 & notify-send "Philips" "Volume 70" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_3Conditions]
@@ -283,7 +284,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_4Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL60
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL60 & notify-send "Philips" "Volume 60" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_4Conditions]
@@ -309,7 +310,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_5Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL50
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL50 & notify-send "Philips" "Volume 50" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_5Conditions]
@@ -335,7 +336,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_6Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL40
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL40 & notify-send "Philips" "Volume 40" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_6Conditions]
@@ -361,7 +362,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_7Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL30
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL30 & notify-send "Philips" "Volume 30" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_7Conditions]
@@ -387,7 +388,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_8Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL20
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL20 & notify-send "Philips" "Volume 20" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_8Conditions]
@@ -413,7 +414,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_1_9Actions0]
-CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL10
+CommandURL=/usr/bin/python /home/amir/philips_go/philips.py VOL10 & notify-send "Philips" "Volume 10" --icon=video-display
 Type=COMMAND_URL
 
 [Data_1_9Conditions]

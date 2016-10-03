@@ -3,7 +3,6 @@ import time
 import serial
 import sys
 from functools import reduce
-import subprocess
 command_map = {
         "POWER-GET": [0x19],
         "ON":        [0x18, 0x02],
@@ -54,4 +53,3 @@ buf.append(reduce(lambda a, b: a ^ b, buf))
 #print(bytes(buf))
 ser.write(bytes(buf))
 ser.close()
-subprocess.Popen(['notify-send', 'Philips', str(sys.argv[1]), '--icon=video-display'])
